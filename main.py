@@ -1,11 +1,19 @@
-import random 
+import discord
+from discord.ext import commands
 
-elementos = "+-/*!&$#?=@<>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+bot = commands.Bot(command_prefix="", intents=discord.Intents.default())
 
-longitud = int(input("Introduce la longitud de tu contraseña segura: "))
+@bot.event
+async def on_ready():
+    print(f"Conectado como {bot.user}")
 
-contrasena = ""
-for i in range(longitud):
-    contrasena += random.choice(elementos)
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f"¡Hola! Soy un bot con Bot class: {bot.user}")
 
-print(f"Tu nueva contraseña segura es: {contrasena}")
+@bot.command()
+async def say( ctx, *, mensaje):
+    await ctx.send(f"{mensaje}")
+
+bot.run("MTM4OTc2OTgzNDI5MTc4OTkzNQ.GX7glA.eBa2LJFTGBgHyw4WHfkH85p03szfsiia_Me5Ao")
+
